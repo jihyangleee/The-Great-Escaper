@@ -5,18 +5,9 @@ from bangtal import *
 
 scene1 = Scene("룸1", "RoomEscape//배경-1.png")
 
-door1 = Object("RoomEscape//문-오른쪽-닫힘.png")
-door1.locate(scene1, 800, 270)
-door1.show()
 
-key = Object("RoomEscape//열쇠.png")
-key.setScale(0.2)
-key.locate(scene1, 600, 150)
-key.show()
 
-flowerpot = Object("RoomEscape//화분.png")
-flowerpot.locate(scene1, 550, 150)
-flowerpot.show()
+
 
 # 탁자 생성
 table = Object("RoomEscape//table(2).png")  # 탁자 이미지 필요
@@ -30,6 +21,12 @@ computer.locate(scene1, 70, 370)  # 노트북을 탁자 위로 위치 조정
 computer.setScale(0.07)  # 크기 조정
 computer.show()
 
+keypad1 = Object("RoomEscape//키패드.png")
+keypad1.locate(scene1, 300, 60)
+keypad1.show()
+
+
+
 light = Object("RoomEscape//light(2).png")  # 조명 이미지 경로
 light.locate(scene1, 300, 60)  # 천장 위치에 조명 배치
 light.setScale(0.7)  # 조명의 크기를 조정
@@ -42,6 +39,21 @@ sofa.locate(scene1,1010,60)
 sofa.setScale(0.5)
 sofa.show()
 
+door1 = Object("RoomEscape//문-오른쪽-닫힘.png")
+door1.locate(scene1, 800, 270)
+door1.show()
+
+
+
+key = Object("RoomEscape//열쇠.png")
+key.setScale(0.2)
+key.locate(scene1, 600, 150)
+key.show()
+
+
+flowerpot = Object("RoomEscape//화분.png")
+flowerpot.locate(scene1, 550, 150)
+flowerpot.show()
 
 
 
@@ -129,6 +141,8 @@ def onMouseAction_keypad(x, y, action):
     showKeypad("BANGTAL", door3)
 keypad.onMouseAction = onMouseAction_keypad
 
+
+
 switch.lighted = True
 def onMouseAction_switch(x, y, action):
     global switch, password, scene2
@@ -140,5 +154,19 @@ def onMouseAction_switch(x, y, action):
         scene2.setLight(.2)
         password.show()
 switch.onMouseAction = onMouseAction_switch
+def onMouseAction_computer(x, y, action):
+    showMessage("힌트 : '난 요즘 컴퓨터로 계속 작업하는데\n빛이 너무 강해서 그런가 눈이 너무 아파서\n소파에서 가끔씩 쉬면서 해'\n조명쪽으로 가서 빛 조절좀 해줄래?")
+    
+computer.onMouseAction = onMouseAction_computer
 
+def onMouseAction_light(x,y,action):
+    showMessage("방금 힌트를 봤을거야\n 거기에 나온 문장들을 잘보면 지금 이 방에 있는 물건들이 문장 속에 있을거야\n그 단어들을 잘 조합해서 다음의 퀴즈를 풀어줘")
+light.onMouseAction = onMouseAction_light
+
+def onMouseAction_keypad1(x, y, action):
+    showKeypad("CLS",door1)
+keypad1.onMouseAction = onMouseAction_keypad1
+
+
+# showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
 startGame(scene1)
