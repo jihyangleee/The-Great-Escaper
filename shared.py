@@ -3,70 +3,43 @@ from bangtal import *
 
 
 
-scene1 = Scene("룸1", "RoomEscape//배경-1.png")
+scene1 = Scene("룸1", "C://오소소플젝//RoomEscape//배경-1.png")
 
-door1 = Object("RoomEscape//문-오른쪽-닫힘.png")
+door1 = Object("C://오소소플젝//RoomEscape//문-오른쪽-닫힘.png")
 door1.locate(scene1, 800, 270)
 door1.show()
 
-key = Object("RoomEscape//열쇠.png")
+key = Object("C://오소소플젝//RoomEscape//열쇠.png")
 key.setScale(0.2)
 key.locate(scene1, 600, 150)
 key.show()
 
-flowerpot = Object("RoomEscape//화분.png")
+flowerpot = Object("C://오소소플젝//RoomEscape//화분.png")
 flowerpot.locate(scene1, 550, 150)
 flowerpot.show()
 
-# 탁자 생성
-table = Object("RoomEscape//table(2).png")  # 탁자 이미지 필요
-table.locate(scene1, -20, 50)  # 탁자를 검정 벽 쪽으로 이동
-table.setScale(0.4)  # 크기 조정
-table.show()
+scene2 = Scene("룸2", "C://오소소플젝//RoomEscape//배경-2.png")
 
-#컴퓨터 생성
-computer = Object("RoomEscape//computer(5).png")  # 노트북 이미지 필요
-computer.locate(scene1, 70, 370)  # 노트북을 탁자 위로 위치 조정
-computer.setScale(0.07)  # 크기 조정
-computer.show()
-
-light = Object("RoomEscape//light(2).png")  # 조명 이미지 경로
-light.locate(scene1, 300, 60)  # 천장 위치에 조명 배치
-light.setScale(0.7)  # 조명의 크기를 조정
-light.show()
-
-
-
-sofa = Object("RoomEscape//sofa.png")
-sofa.locate(scene1,1010,60)
-sofa.setScale(0.5)
-sofa.show()
-
-
-
-
-scene2 = Scene("룸2", "RoomEscape//배경-2.png")
-
-door2 = Object("RoomEscape//문-왼쪽-열림.png")
+door2 = Object("C://오소소플젝//RoomEscape//문-왼쪽-열림.png")
 door2.locate(scene2, 320, 270)
 door2.show()
 
-door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
+door3 = Object("C://오소소플젝//RoomEscape//문-오른쪽-닫힘.png")
 door3.locate(scene2, 910, 270)
 door3.show()
 
-keypad = Object("RoomEscape//키패드.png")
+keypad = Object("C://오소소플젝//RoomEscape//키패드.png")
 keypad.locate(scene2, 885, 420)
 keypad.show()
 
-switch = Object("RoomEscape//스위치.png")
+switch = Object("C:/오소소플젝/RoomEscape/스위치.png")
 switch.locate(scene2, 880, 440)
 switch.show()
 
-password = Object("RoomEscape//암호.png")
+password = Object("C:/오소소플젝/RoomEscape/암호.png")
 password.locate(scene2, 400, 100)
 
-board = Object("RoomEscape//board.png")
+board = Object("C:/오소소플젝/RoomEscape/board.png")
 board.setText("한글 ABCD\n1234")
 board.locate(scene1, 900, 600)
 board.show()
@@ -76,7 +49,7 @@ def onMouseAction_door1(x, y, action):
     global door1, key, scene2
     if door1.closed == True:
         if key.inHand():
-            door1.setImage("RoomEscape//문-오른쪽-열림.png")
+            door1.setImage("C://오소소플젝//RoomEscape//문-오른쪽-열림.png")
             door1.closed = False
         else:
             showMessage("열쇠가 필요해~~~")
@@ -113,7 +86,7 @@ def onMouseAction_door3(x, y, action):
     if door3.unlocked == False:
         showMessage("문이 잠겨있다.")
     elif door3.closed == True:
-        door3.setImage("RoomEscape//문-오른쪽-열림.png")
+        door3.setImage("C://오소소플젝//RoomEscape//문-오른쪽-열림.png")
         door3.closed = False
     else:
         endGame()
