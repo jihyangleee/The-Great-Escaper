@@ -1,0 +1,3 @@
+python8- 32bit 환경에서 library를 다운받아야함
+-> bangtal.dll은 window환경에 있다. 
+-> bangtal파일은 python8파일에 있다
