@@ -44,16 +44,21 @@ door1.locate(scene1, 800, 270)
 door1.show()
 
 
+# 비밀번호 생성 
+keypad = Object("RoomEscape//키패드.png")
+keypad.locate(scene1, 885, 420)
+keypad.show()
 
-key = Object("RoomEscape//열쇠.png")
-key.setScale(0.2)
-key.locate(scene1, 600, 150)
-key.show()
+
+# key = Object("RoomEscape//열쇠.png")
+# key.setScale(0.2)
+# key.locate(scene1, 600, 150)
+# key.show()
 
 
-flowerpot = Object("RoomEscape//화분.png")
-flowerpot.locate(scene1, 550, 150)
-flowerpot.show()
+# flowerpot = Object("RoomEscape//화분.png")
+# flowerpot.locate(scene1, 550, 150)
+# flowerpot.show()
 
 
 
@@ -67,9 +72,7 @@ door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
 door3.locate(scene2, 910, 270)
 door3.show()
 
-keypad = Object("RoomEscape//키패드.png")
-keypad.locate(scene2, 885, 420)
-keypad.show()
+
 
 switch = Object("RoomEscape//스위치.png")
 switch.locate(scene2, 880, 440)
@@ -96,22 +99,22 @@ def onMouseAction_door1(x, y, action):
         scene2.enter()
 door1.onMouseAction = onMouseAction_door1
 
-def onMouseAction_key(x, y, action):
-    global key
-    key.pick()
-key.onMouseAction = onMouseAction_key
+# def onMouseAction_key(x, y, action):
+#     global key
+#     key.pick()
+# key.onMouseAction = onMouseAction_key
 
-flowerpot.moved = False
-def onMouseAction_flowerpot(x, y, action):
-    global flowerpot
-    if flowerpot.moved == False:
-        if action == MouseAction.DRAG_LEFT:
-            flowerpot.locate(scene1, 450, 150)
-            flowerpot.moved = True
-        elif action == MouseAction.DRAG_RIGHT:
-            flowerpot.locate(scene1, 650, 150)
-            flowerpot.moved = True
-flowerpot.onMouseAction = onMouseAction_flowerpot
+# flowerpot.moved = False
+# def onMouseAction_flowerpot(x, y, action):
+#     global flowerpot
+#     if flowerpot.moved == False:
+#         if action == MouseAction.DRAG_LEFT:
+#             flowerpot.locate(scene1, 450, 150)
+#             flowerpot.moved = True
+#         elif action == MouseAction.DRAG_RIGHT:
+#             flowerpot.locate(scene1, 650, 150)
+#             flowerpot.moved = True
+# flowerpot.onMouseAction = onMouseAction_flowerpot
 
 def onMouseAction_door2(x, y, action):
     global scene1
@@ -138,9 +141,9 @@ def onKeypad_door3():
 door3.onKeypad = onKeypad_door3
 
 def onMouseAction_keypad(x, y, action):
-    showKeypad("BANGTAL", door3)
-keypad.onMouseAction = onMouseAction_keypad
+    showKeypad("CLS", door1)
 
+keypad.onMouseAction = onMouseAction_keypad
 
 
 switch.lighted = True
@@ -168,5 +171,5 @@ def onMouseAction_keypad1(x, y, action):
 keypad1.onMouseAction = onMouseAction_keypad1
 
 
-# showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
+showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
 startGame(scene1)
