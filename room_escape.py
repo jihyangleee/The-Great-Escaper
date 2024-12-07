@@ -1,6 +1,7 @@
 import sys
 from bangtal import *
-
+# import threading  # OpenGL 실행을 위한 스레드 사용
+# from opengl_scene import opengl_display  # OpenGL 관련 기능 가져오기
 
 
 scene1 = Scene("룸1", "RoomEscape//배경-1.png")
@@ -70,7 +71,9 @@ door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
 door3.locate(scene2, 910, 270)
 door3.show()
 
-
+bookshelf = Object("RoomEscape//rotated_book.png")
+bookshelf.locate(scene2,-250,10)
+bookshelf.show()
 
 switch = Object("RoomEscape//스위치.png")
 switch.locate(scene2, 880, 440)
@@ -85,6 +88,19 @@ board.locate(scene1, 900, 600)
 board.show()
 
 # -------------------------------------------------------동작정의-----------------------------------------------
+
+# OpenGL 디스플레이를 자동으로 실행
+#def initialize_scene2():
+#   threading.Thread(target=opengl_display, args=("RoomEscape//book.png",)).start()//
+
+# def onMouseAction_bookshelf(x, y, action):
+#     threading.Thread(target=opengl_display, args=("RoomEscape//book.png",)).start()
+
+# bookshelf.onMouseAction = onMouseAction_bookshelf
+
+
+
+
 # Door1 동작 정의
 door1.closed = True
 door1.unlocked = False
@@ -96,6 +112,7 @@ def onMouseAction_door1(x, y, action):
         door1.closed = False
     else:
         scene2.enter()
+        
 door1.onMouseAction = onMouseAction_door1
 
 # Keypad 동작 정의
@@ -175,4 +192,4 @@ light.onMouseAction = onMouseAction_light
 
 
 showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
-startGame(scene1)
+startGame(scene2)
