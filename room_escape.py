@@ -75,28 +75,54 @@ bookshelf = Object("RoomEscape//rotated_book.png")
 bookshelf.locate(scene2,-250,10)
 bookshelf.show()
 
-switch = Object("RoomEscape//스위치.png")
-switch.locate(scene2, 880, 440)
+
+
+
+# 포스터 1
+poster = Object("RoomEscape//범죄자1.png")
+poster.locate(scene2, 650, 300)  # 왼쪽 위
+poster.setScale(0.5)
+poster.show()
+
+# 포스터 2
+poster2 = Object("RoomEscape//범죄자2.jpg")
+poster2.locate(scene2, 735, 265)  # 오른쪽 위
+poster2.setScale(0.3)
+poster2.show()
+
+# 포스터 3
+poster3 = Object("RoomEscape//범죄자3.png")
+poster3.locate(scene2, 600, 260)  # 왼쪽 아래
+poster3.setScale(0.3)
+poster3.show()
+
+# 포스터 4
+poster4 = Object("RoomEscape//범죄자4.png")
+poster4.locate(scene2, 600, 390)  # 오른쪽 아래
+poster4.setScale(0.3)
+poster4.show()
+
+switch = Object("RoomEscape//switch(1).png")
+switch.locate(scene2, 770, 430)
+switch.setScale(0.1)
 switch.show()
+
+
+
+
+
 
 password = Object("RoomEscape//암호.png")
 password.locate(scene2, 400, 100)
 
 board = Object("RoomEscape//board.png")
 board.setText("한글 ABCD\n1234")
-board.locate(scene1, 900, 600)
+board.locate(scene2, 900, 600)
 board.show()
 
 # -------------------------------------------------------동작정의-----------------------------------------------
 
-# OpenGL 디스플레이를 자동으로 실행
-#def initialize_scene2():
-#   threading.Thread(target=opengl_display, args=("RoomEscape//book.png",)).start()//
 
-# def onMouseAction_bookshelf(x, y, action):
-#     threading.Thread(target=opengl_display, args=("RoomEscape//book.png",)).start()
-
-# bookshelf.onMouseAction = onMouseAction_bookshelf
 
 
 
@@ -167,18 +193,41 @@ door3.onMouseAction = onMouseAction_door3
 
 
 
-# scene2를 위한 것
-switch.lighted = True
+switch.lighted = True  # 스위치의 초기 상태
+
 def onMouseAction_switch(x, y, action):
     global switch, password, scene2
-    switch.lighted = not switch.lighted
-    if switch.lighted == True:
-        scene2.setLight(1.)
-        password.hide()
+    switch.lighted = not switch.lighted  # 스위치 상태를 토글
+    if switch.lighted:
+        scene2.setLight(1.0)  # 방을 밝게
+        password.hide()  # 암호 숨김
+        # showMessage("스위치를 켰습니다. 방이 밝아졌습니다.")
     else:
-        scene2.setLight(.2)
-        password.show()
+        scene2.setLight(0.2)  # 방을 어둡게
+        password.show()  # 암호 표시
+        # showMessage("스위치를 껐습니다. 방이 어두워졌습니다.")
+
+# 이벤트 핸들러 등록
 switch.onMouseAction = onMouseAction_switch
+
+poster.moved = False
+def onMouseAction_poster(x, y, action):
+    global poster
+    if poster.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            poster.locate(scene2, 550, 300)
+            poster.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            poster.locate(scene2, 750, 300)
+            poster.moved = True
+
+# 포스터의 이벤트 핸들러 설정
+poster.onMouseAction = onMouseAction_poster
+
+
+
+
+
 
 
 def onMouseAction_computer(x, y, action):
