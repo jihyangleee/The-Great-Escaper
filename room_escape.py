@@ -67,9 +67,7 @@ door2 = Object("RoomEscape//문-왼쪽-열림.png")
 door2.locate(scene2, 320, 270)
 door2.show()
 
-door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
-door3.locate(scene2, 910, 270)
-door3.show()
+
 
 bookshelf = Object("RoomEscape//rotated_book.png")
 bookshelf.locate(scene2,-250,10)
@@ -108,8 +106,10 @@ switch.setScale(0.1)
 switch.show()
 
 
-
-
+book = Object("RoomEscape//openbook.png")
+book.locate(scene2,200,100)
+book.setScale(0.1)
+book.show()
 
 
 password = Object("RoomEscape//암호.png")
@@ -120,6 +120,9 @@ board.setText("한글 ABCD\n1234")
 board.locate(scene2, 900, 600)
 board.show()
 
+door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
+door3.locate(scene2, 910, 270)
+door3.show()
 # -------------------------------------------------------동작정의-----------------------------------------------
 
 
@@ -138,7 +141,7 @@ def onMouseAction_door1(x, y, action):
         door1.closed = False
     else:
         scene2.enter()
-        
+        showMessage("떨어져 있는 책이 있네 그 속에 힌트가 있을거야\n책을 들여다볼까?")
 door1.onMouseAction = onMouseAction_door1
 
 # Keypad 동작 정의
@@ -180,16 +183,37 @@ door2.onMouseAction = onMouseAction_door2
 
 door3.closed = True
 door3.unlocked = False
+import tkinter as tk
+from tkinter import simpledialog
+
 def onMouseAction_door3(x, y, action):
     global door3
-    if door3.unlocked == False:
-        showMessage("문이 잠겨있다.")
-    elif door3.closed == True:
-        door3.setImage("RoomEscape//문-오른쪽-열림.png")
-        door3.closed = False
+
+    if door3.unlocked:
+        if door3.closed:
+            door3.setImage("RoomEscape//문-오른쪽-열림.png")
+            door3.closed = False
+            showMessage("문이 열렸습니다. 이제 다음 방으로 들어갈 수 있습니다.")
+        else:
+            endGame()
     else:
-        endGame()
+        # GUI 입력창을 통해 사용자 입력받기
+        root = tk.Tk()
+        root.withdraw()  # Tkinter 창 숨기기
+        user_input = simpledialog.askstring("비밀번호 입력", "문을 열기 위한 비밀번호를 입력하세요:")
+
+        # 비밀번호 확인
+        if user_input == "BANGTAL":  # 정답
+            showMessage("철커덕! 문이 열렸습니다.")
+            door3.unlocked = True
+        elif user_input is None or user_input.strip() == "":  # 입력 취소 또는 빈 입력 처리
+            showMessage("입력을 취소했습니다. 다시 시도하세요.")
+        else:  # 오답
+            showMessage("비밀번호가 틀렸습니다. 다시 시도하세요.")
+
 door3.onMouseAction = onMouseAction_door3
+
+
 
 
 
@@ -226,9 +250,9 @@ poster.onMouseAction = onMouseAction_poster
 
 
 
-
-
-
+def onMouseAction_book(x,y,action):
+    showMessage("힌트 : 벽에 걸려있는 용의자들의 실루엣이 보일거야 저 사람들 중에 범인이 있어\n 범인은 평소에 추리소설을 좋아해 그래서 탐정들의 모습을 따라하는 것을 좋아한다네\n범인일 것 같은 범죄자의 얼굴을 클릭해서 옆으로 옮겨줘 그리고 무슨 문자가 나올거야 그걸 잘 기억해둬")
+book.onMouseAction = onMouseAction_book
 
 def onMouseAction_computer(x, y, action):
     showMessage("힌트 : '난 요즘 컴퓨터로 계속 작업하는데\n빛이 너무 강해서 그런가 눈이 너무 아파서\n소파에서 가끔씩 쉬면서 해'\n조명쪽으로 가서 빛 조절좀 해줄래?")
