@@ -274,6 +274,27 @@ def onMouseAction_caution(x, y, action):
             caution.moved = True
 caution.onMouseAction = onMouseAction_caution
 
+#메시지 표시
+message_background = Object("RoomEscape//background(1).png")
+message_background.locate(scene3, -10, -48) 
+message_background.hide()  # 처음에는 숨김
+
+
+message_text = Object("")
+message_text.locate(scene3,-300, -440)
+message_text.setScale(1.5)
+message_text.hide()
+def showCustomMessage(text, duration= 3.0):
+    message_background.show()
+    message_text.setText(text)
+    message_text.show()
+
+    timer = Timer(duration)
+    def hideCustomMessage():
+        message_background.hide()
+        message_text.hide()
+    timer.onTimeout = hideCustomMessage
+    timer.start()
 
 #침대 움직임
 bed.moved = False
@@ -306,7 +327,7 @@ end_timer = Timer(5.0)  # 5초 타이머 생성
 def onMouseAction_key(x, y, action):
     global key
     key.pick()
-    showMessage("축하합니다! 열쇠를 찾았습니다. 방탈출 성공!")
+    showCustomMessage("축하합니다! 열쇠를 찾았습니다. 방탈출 성공!",duration=7.0)
 
     # 5초 후 게임 종료 설정
     def end_game():
@@ -325,11 +346,11 @@ door3_used = False  # 문 클릭 여부
 def onMouseAction_fingerprint(x, y, action):
     global fingerprint_used
     if fingerprint_used:
-        showMessage("이미 지문을 확인했습니다.")
+        showCustomMessage("범인의 지문을 획득했네! 이제 증거를 찾았으니 키를 찾아 방을 나가면 되겠네!\n지문이 가리키는 방향을 잘보고 시계의 시침이 가리켜야 하는 숫자를 적어줘\n그게 범죄가 일어난 시각이야",duration=7.0)
         return
     fingerprint_used = True  # 한 번 실행 후 True로 설정
 
-    showMessage("범인의 지문을 획득했네! 이제 증거를 찾았으니 키를 찾아 방을 나가면 되겠네!\n지문이 가리키는 방향을 잘보고 시계의 시침이 가리켜야 하는 숫자를 적어줘\n그게 범죄가 일어난 시각이야")
+    showCustomMessage("범인의 지문을 획득했네! 이제 증거를 찾았으니 키를 찾아 방을 나가면 되겠네!\n지문이 가리키는 방향을 잘보고 시계의 시침이 가리켜야 하는 숫자를 적어줘\n그게 범죄가 일어난 시각이야",duration=7.0)
     
     def show_tkinter_dialog():
         root = tk.Tk()
@@ -337,51 +358,89 @@ def onMouseAction_fingerprint(x, y, action):
         user_input = simpledialog.askstring("숫자 입력", "키를 얻기 위한 숫자를 입력하세요:")
         root.destroy()  # Tkinter 창 닫기
         if user_input == "1":  # 정답
-            showMessage("정답입니다! 시계를 옆으로 밀어 열쇠를 획득하세요!")
+            showCustomMessage("정답입니다! 시계를 옆으로 밀어 열쇠를 획득하세요!",duration=3.0)
             clock.onMouseAction = onMouseAction_clock
         elif user_input is None or user_input.strip() == "":  # 취소 또는 빈 입력
-            showMessage("입력을 취소했습니다. 다시 시도하세요.")
+            showCustomMessage("입력을 취소했습니다. 다시 시도하세요.",duration=3.0)
         else:  # 오답
-            showMessage("오답입니다. 다시 시도하세요.")
+            showCustomMessage("오답입니다. 다시 시도하세요.",duration=3.0)
     
     threading.Thread(target=show_tkinter_dialog).start()
 fingerprint.onMouseAction = onMouseAction_fingerprint
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import tkinter as tk
+from tkinter import simpledialog
+
 door3.closed = True
 door3.unlocked = False
+
+# Tkinter 창 관리 플래그
+is_tk_window_open = False  # 창이 열려 있는지 여부 추적
+
 def onMouseAction_door3(x, y, action):
-    global door3, door3_used
+    global door3, is_tk_window_open
 
-    if door3_used:
-        pass
-    door3_used = True  # 한 번 실행 후 True로 설정
-
+    # 이미 열려 있는 상태에서는 재실행 방지
+    if is_tk_window_open:
+        return
 
     if door3.unlocked:
         if door3.closed:
             door3.setImage("RoomEscape//문-오른쪽-열림.png")  # 문 열림 이미지로 변경
-            # door3.hide()
-            # door4.show()
             door3.closed = False
             showMessage("문이 열렸습니다. 다음 방으로 이동합니다.")
         else:
             scene3.enter()  # 이미 열린 상태라면 바로 이동
-            showMessage("살인사건이 일어난 현장이야. 침대에서 살인을 당했으니 침대에 단서가 있을거야\n caution를 옆으로 제거한 뒤 침대도 옆으로 밀어볼래?")
+            showCustomMessage(
+                "살인사건이 일어난 현장이야. 침대에서 살인을 당했으니 침대에 단서가 있을거야\n Warning을 옆으로 제거한 뒤 침대도 옆으로 밀어볼래?",
+                duration=7.0,
+            )
     else:
-        root = tk.Tk()
-        root.withdraw()  # Tkinter 창 숨기기
-        user_input = simpledialog.askstring("비밀번호 입력", "문을 열기 위한 비밀번호를 입력하세요:")
-        root.destroy()  # T창kinter  닫기
-        if user_input == "BANGTAL":  # 정답
-            showMessage("철커덕! 문이 열렸습니다.")
-            door3.unlocked = True
-        elif user_input is None or user_input.strip() == "":  # 입력 취소 또는 빈 입력 처리
-            showMessage("입력을 취소했습니다. 다시 시도하세요.")
-        else:  # 오답
-            showMessage("비밀번호가 틀렸습니다. 다시 시도하세요.")
+        # Tkinter 창이 이미 열려 있는 상태가 아니면 실행
+        is_tk_window_open = True  # 창이 열렸음을 표시
+
+        try:
+            # 비밀번호 입력창 생성
+            root = tk.Tk()
+            root.withdraw()  # Tkinter 기본 창 숨기기
+
+            user_input = simpledialog.askstring(
+                "비밀번호 입력", "문을 열기 위한 비밀번호를 입력하세요:"
+            )
+            root.destroy()  # Tkinter 창 닫기
+
+            # 비밀번호 확인
+            if user_input == "BANGTAL":  # 정답
+                showMessage("철커덕! 문이 열렸습니다.")
+                door3.unlocked = True
+            elif user_input is None or user_input.strip() == "":  # 입력 취소 또는 빈 입력 처리
+                showMessage("입력을 취소했습니다. 다시 시도하세요.")
+            else:  # 오답
+                showMessage("비밀번호가 틀렸습니다. 다시 시도하세요.")
+
+        except Exception as e:
+            print(f"오류 발생: {e}")  # 디버깅용 로그
+
+        finally:
+            is_tk_window_open = False  # 창이 닫혔음을 표시
+
 door3.onMouseAction = onMouseAction_door3
-# door4.onMouseAction = onMouseAction_door3
 
 
 
