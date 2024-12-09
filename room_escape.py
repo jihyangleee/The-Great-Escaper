@@ -54,17 +54,26 @@ door2.locate(scene2, 320, 270)
 door2.show()
 
 
-bookshelf = Object("RoomEscape//rotation_book(2).png")
-bookshelf.locate(scene2,-400,-150)
-bookshelf.setScale(1.5)
-bookshelf.show()
+
+book1= Object("RoomEscape//books.png")
+book1.locate(scene2,40,160)
+book1.setScale(0.25)
+book1.show()
+
+
+book2= Object("RoomEscape//books(2).png")
+book2.locate(scene2,110,160)
+book2.setScale(0.25)
+book2.show()
 
 alpha = Object("RoomEscape//alpha.png")
 alpha.locate(scene2,900,150)
 alpha.setScale(0.6)
 alpha.show()
 
-
+#화분추가
+#이게 더 낫지??
+#약간 여러권 있는게 낫겠다. 저런 책 쌓인것이 여러개면 더 좋지 않겠나??
 
 # 포스터 1
 poster = Object("RoomEscape//범죄자1.png")
@@ -459,5 +468,5 @@ light.onMouseAction = onMouseAction_light
 
 
 showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
-startGame(scene2)
+startGame(scene1)
 
