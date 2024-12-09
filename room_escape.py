@@ -38,10 +38,7 @@ keypad.locate(scene1, 700, 420)
 keypad.show()
 
 
-# key = Object("RoomEscape//열쇠.png")
-# key.setScale(0.2)
-# key.locate(scene1, 600, 150)
-# key.show()
+
 
 
 # flowerpot = Object("RoomEscape//화분.png")
@@ -116,15 +113,43 @@ board.show()
 door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
 door3.locate(scene2, 910, 270)
 door3.show()
+
+
+
+
 #--------------------------------------------scene3-----------------------------------------
 
 scene3 = Scene("룸3", "RoomEscape//배경4.png")
 
-# 마지막 방은 문을 제거하는 걸로(보류)
-# door4= Object("RoomEscape//문-왼쪽-열림.png")
-# door4.locate(scene3, 200, 200)
-# door4.setScale(0.8)
-# door4.show()
+
+fingerprint = Object("RoomEscape//rotated_지문.png")
+fingerprint.locate(scene3,300,30)
+fingerprint.setScale(0.6)
+fingerprint.show()
+
+
+
+bed = Object("RoomEscape//bed.png")
+bed.locate(scene3,350,55)
+bed.setScale(0.5)
+bed.show()
+
+caution = Object("RoomEscape//caution.png")
+caution.locate(scene3,400,55)
+caution.setScale(0.09)
+caution.show()
+
+
+key = Object("RoomEscape//열쇠.png")
+key.setScale(0.2)
+key.locate(scene3, 60, 550)
+key.show()
+
+clock = Object("RoomEscape//clock.png")
+clock.locate(scene3,10,500)
+clock.setScale(0.4)
+clock.show()
+
 
 
 
@@ -167,10 +192,7 @@ keypad.onMouseAction = onMouseAction_keypad
 
 
 
-# def onMouseAction_key(x, y, action):
-#     global key
-#     key.pick()
-# key.onMouseAction = onMouseAction_key
+
 
 # flowerpot.moved = False
 # def onMouseAction_flowerpot(x, y, action):
@@ -189,35 +211,168 @@ def onMouseAction_door2(x, y, action):
     scene1.enter()
 door2.onMouseAction = onMouseAction_door2
 
-# 마지막 방은 문은 제거하는 걸로(보류) 
-# def onMouseAction_door4(x,y,action):
-#     global scene2
-#     scene2.enter()
-# door4.onMouseAction = onMouseAction_door4
-
 
 door3.closed = True
 door3.unlocked = False
 import tkinter as tk
 from tkinter import simpledialog
 
+
+
+
+switch.lighted = True  # 스위치의 초기 상태
+switch.enabled = False  # 초기 상태는 비활성화
+
+def onMouseAction_switch(x, y, action):
+    global switch, password, scene2
+    if not switch.enabled:
+        pass
+    else:
+        
+        switch.lighted = not switch.lighted  # 스위치 상태를 토글
+        if switch.lighted:
+            scene2.setLight(1.0)  # 방을 밝게
+            password.hide()  # 암호 숨김
+        else:
+            scene2.setLight(0.2)  # 방을 어둡게
+            password.show()  # 암호 표시
+switch.onMouseAction = onMouseAction_switch
+
+
+
+
+poster.moved = False
+def onMouseAction_poster(x, y, action):
+    global poster, switch
+    if not poster.moved:
+        if action == MouseAction.DRAG_LEFT:
+            poster.locate(scene2, 550, 300)
+            poster.moved = True
+            switch.enabled = True  # 포스터가 옮겨지면 스위치 활성화
+            showMessage("포스터를 옮겼습니다. 이제 스위치를 사용할 수 있습니다.")
+        elif action == MouseAction.DRAG_RIGHT:
+            poster.locate(scene2, 750, 300)
+            poster.moved = True
+            switch.enabled = True  # 포스터가 옮겨지면 스위치 활성화
+            showMessage("포스터를 옮겼습니다. 이제 스위치를 사용할 수 있습니다.")
+poster.onMouseAction = onMouseAction_poster
+
+
+
+
+
+# caution움직임
+caution.moved = False
+def onMouseAction_caution(x, y, action):
+    global caution
+    if caution.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            caution.locate(scene3, 200, 55)
+            caution.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            caution.locate(scene3, 600, 55)
+            caution.moved = True
+caution.onMouseAction = onMouseAction_caution
+
+
+#침대 움직임
+bed.moved = False
+def onMouseAction_bed(x, y, action):
+    global bed
+    if bed.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            bed.locate(scene3, 150, 55)
+            bed.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            bed.locate(scene3, 550, 55)
+            bed.moved = True
+bed.onMouseAction = onMouseAction_bed
+
+#시계 움직임
+clock.moved = False
+def onMouseAction_clock(x, y, action):
+    global clock
+    if clock.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            clock.locate(scene3, -100, 500)
+            clock.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            clock.locate(scene3, 100, 500)
+            clock.moved = True
+
+
+end_timer = Timer(5.0)  # 5초 타이머 생성
+
+def onMouseAction_key(x, y, action):
+    global key
+    key.pick()
+    showMessage("축하합니다! 열쇠를 찾았습니다. 방탈출 성공!")
+
+    # 5초 후 게임 종료 설정
+    def end_game():
+        endGame()  # 게임 종료
+    end_timer.onTimeout = end_game  # 타이머 종료 시 end_game 실행
+    end_timer.start()  # 타이머 시작
+
+key.onMouseAction = onMouseAction_key
+
+
+import threading
+
+fingerprint_used = False  # 지문 클릭 여부
+door3_used = False  # 문 클릭 여부
+
+def onMouseAction_fingerprint(x, y, action):
+    global fingerprint_used
+    if fingerprint_used:
+        showMessage("이미 지문을 확인했습니다.")
+        return
+    fingerprint_used = True  # 한 번 실행 후 True로 설정
+
+    showMessage("범인의 지문을 획득했네! 이제 증거를 찾았으니 키를 찾아 방을 나가면 되겠네!\n지문이 가리키는 방향을 잘보고 시계의 시침이 가리켜야 하는 숫자를 적어줘\n그게 범죄가 일어난 시각이야")
+    
+    def show_tkinter_dialog():
+        root = tk.Tk()
+        root.withdraw()  # Tkinter 창 숨기기
+        user_input = simpledialog.askstring("숫자 입력", "키를 얻기 위한 숫자를 입력하세요:")
+        root.destroy()  # Tkinter 창 닫기
+        if user_input == "1":  # 정답
+            showMessage("정답입니다! 시계를 옆으로 밀어 열쇠를 획득하세요!")
+            clock.onMouseAction = onMouseAction_clock
+        elif user_input is None or user_input.strip() == "":  # 취소 또는 빈 입력
+            showMessage("입력을 취소했습니다. 다시 시도하세요.")
+        else:  # 오답
+            showMessage("오답입니다. 다시 시도하세요.")
+    
+    threading.Thread(target=show_tkinter_dialog).start()
+fingerprint.onMouseAction = onMouseAction_fingerprint
+
+
+door3.closed = True
+door3.unlocked = False
 def onMouseAction_door3(x, y, action):
-    global door3
+    global door3, door3_used
+
+    if door3_used:
+        pass
+    door3_used = True  # 한 번 실행 후 True로 설정
+
 
     if door3.unlocked:
         if door3.closed:
-            door3.setImage("RoomEscape//문-오른쪽-열림.png")
+            door3.setImage("RoomEscape//문-오른쪽-열림.png")  # 문 열림 이미지로 변경
+            # door3.hide()
+            # door4.show()
             door3.closed = False
-            showMessage("문이 열렸습니다. 이제 다음 방으로 들어갈 수 있습니다.")
+            showMessage("문이 열렸습니다. 다음 방으로 이동합니다.")
         else:
-            scene3.enter()
+            scene3.enter()  # 이미 열린 상태라면 바로 이동
+            showMessage("살인사건이 일어난 현장이야. 침대에서 살인을 당했으니 침대에 단서가 있을거야\n caution를 옆으로 제거한 뒤 침대도 옆으로 밀어볼래?")
     else:
-        # GUI 입력창을 통해 사용자 입력받기
         root = tk.Tk()
         root.withdraw()  # Tkinter 창 숨기기
         user_input = simpledialog.askstring("비밀번호 입력", "문을 열기 위한 비밀번호를 입력하세요:")
-
-        # 비밀번호 확인
+        root.destroy()  # T창kinter  닫기
         if user_input == "BANGTAL":  # 정답
             showMessage("철커덕! 문이 열렸습니다.")
             door3.unlocked = True
@@ -225,43 +380,8 @@ def onMouseAction_door3(x, y, action):
             showMessage("입력을 취소했습니다. 다시 시도하세요.")
         else:  # 오답
             showMessage("비밀번호가 틀렸습니다. 다시 시도하세요.")
-
 door3.onMouseAction = onMouseAction_door3
-
-
-
-
-
-switch.lighted = True  # 스위치의 초기 상태
-
-def onMouseAction_switch(x, y, action):
-    global switch, password, scene2
-    switch.lighted = not switch.lighted  # 스위치 상태를 토글
-    if switch.lighted:
-        scene2.setLight(1.0)  # 방을 밝게
-        password.hide()  # 암호 숨김
-        # showMessage("스위치를 켰습니다. 방이 밝아졌습니다.")
-    else:
-        scene2.setLight(0.2)  # 방을 어둡게
-        password.show()  # 암호 표시
-        # showMessage("스위치를 껐습니다. 방이 어두워졌습니다.")
-
-# 이벤트 핸들러 등록
-switch.onMouseAction = onMouseAction_switch
-
-poster.moved = False
-def onMouseAction_poster(x, y, action):
-    global poster
-    if poster.moved == False:
-        if action == MouseAction.DRAG_LEFT:
-            poster.locate(scene2, 550, 300)
-            poster.moved = True
-        elif action == MouseAction.DRAG_RIGHT:
-            poster.locate(scene2, 750, 300)
-            poster.moved = True
-
-# 포스터의 이벤트 핸들러 설정
-poster.onMouseAction = onMouseAction_poster
+# door4.onMouseAction = onMouseAction_door3
 
 
 
@@ -280,5 +400,5 @@ light.onMouseAction = onMouseAction_light
 
 
 showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
-startGame(scene3)
+startGame(scene2)
 

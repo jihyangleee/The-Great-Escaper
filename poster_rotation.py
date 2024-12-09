@@ -122,9 +122,9 @@ def render_to_image(image_path, output_path, angle):
 
 if __name__ == "__main__":
     # Input and output paths
-    input_image = "RoomEscape//문-오른쪽-닫힘.png"  # 원본 이미지 경로
-    output_image = "RoomEscape//문-오른쪽-닫힘(1).png"  # 저장될 이미지 경로
-    rotation_angle = -30# 오른쪽으로 회전할 각도
+    input_image = "RoomEscape//rotated_지문.png"  # 원본 이미지 경로
+    output_image = "RoomEscape//rotated_지문.png"  # 저장될 이미지 경로
+    rotation_angle = 0# 오른쪽으로 회전할 각도
 
     # Render the image rotated and save it
     render_to_image(input_image, output_image, rotation_angle)
