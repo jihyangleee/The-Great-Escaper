@@ -6,10 +6,6 @@ from bangtal import *
 
 scene1 = Scene("룸1", "RoomEscape//배경-1.png")
 
-
-
-
-
 # 탁자 생성
 table = Object("RoomEscape//table(2).png")  # 탁자 이미지 필요
 table.locate(scene1, -20, 50)  # 탁자를 검정 벽 쪽으로 이동
@@ -22,16 +18,10 @@ computer.locate(scene1, 70, 370)  # 노트북을 탁자 위로 위치 조정
 computer.setScale(0.07)  # 크기 조정
 computer.show()
 
-
-
-
-
 light = Object("RoomEscape//light(2).png")  # 조명 이미지 경로
 light.locate(scene1, 300, 60)  # 천장 위치에 조명 배치
 light.setScale(0.7)  # 조명의 크기를 조정
 light.show()
-
-
 
 sofa = Object("RoomEscape//sofa.png")
 sofa.locate(scene1,1010,60)
@@ -41,7 +31,6 @@ sofa.show()
 door1 = Object("RoomEscape//문-오른쪽-닫힘.png")
 door1.locate(scene1, 800, 270)
 door1.show()
-
 
 # 비밀번호 생성 
 keypad = Object("RoomEscape//키패드.png")
@@ -68,11 +57,15 @@ door2.locate(scene2, 320, 270)
 door2.show()
 
 
-
-bookshelf = Object("RoomEscape//rotated_book.png")
-bookshelf.locate(scene2,-250,10)
+bookshelf = Object("RoomEscape//rotation_book(2).png")
+bookshelf.locate(scene2,-400,-150)
+bookshelf.setScale(1.5)
 bookshelf.show()
 
+alpha = Object("RoomEscape//alpha.png")
+alpha.locate(scene2,900,150)
+alpha.setScale(0.6)
+alpha.show()
 
 
 
@@ -123,13 +116,28 @@ board.show()
 door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
 door3.locate(scene2, 910, 270)
 door3.show()
+#--------------------------------------------scene3-----------------------------------------
+
+scene3 = Scene("룸3", "RoomEscape//배경4.png")
+
+# 마지막 방은 문을 제거하는 걸로(보류)
+# door4= Object("RoomEscape//문-왼쪽-열림.png")
+# door4.locate(scene3, 200, 200)
+# door4.setScale(0.8)
+# door4.show()
+
+
+
+
+
+
+
+
+
+
+
+
 # -------------------------------------------------------동작정의-----------------------------------------------
-
-
-
-
-
-
 # Door1 동작 정의
 door1.closed = True
 door1.unlocked = False
@@ -181,6 +189,13 @@ def onMouseAction_door2(x, y, action):
     scene1.enter()
 door2.onMouseAction = onMouseAction_door2
 
+# 마지막 방은 문은 제거하는 걸로(보류) 
+# def onMouseAction_door4(x,y,action):
+#     global scene2
+#     scene2.enter()
+# door4.onMouseAction = onMouseAction_door4
+
+
 door3.closed = True
 door3.unlocked = False
 import tkinter as tk
@@ -195,7 +210,7 @@ def onMouseAction_door3(x, y, action):
             door3.closed = False
             showMessage("문이 열렸습니다. 이제 다음 방으로 들어갈 수 있습니다.")
         else:
-            endGame()
+            scene3.enter()
     else:
         # GUI 입력창을 통해 사용자 입력받기
         root = tk.Tk()
@@ -265,4 +280,5 @@ light.onMouseAction = onMouseAction_light
 
 
 showMessage("먼저 탁자위에 있는 컴퓨터로 가봐!\n열쇠를 얻기 위한 힌트가 주어질거야")
-startGame(scene2)
+startGame(scene3)
+

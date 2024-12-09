@@ -38,15 +38,19 @@ def load_texture_with_alpha(image_path):
 
 def render_to_image(image_path, output_path, angle):
     """
-    Render the image rotated by the given angle with a transparent background
-    and save the result to a file.
+    Render the image rotated around the Y-axis (3D effect) with a transparent background
+    and save the result to a file. Maintains original image size.
     """
+    # Load the image to get its size
+    img = Image.open(image_path).convert("RGBA")
+    img_width, img_height = img.size
+
     # Initialize GLFW
     if not glfw.init():
         raise Exception("GLFW 초기화 실패")
 
-    # Create an offscreen window
-    window = glfw.create_window(800, 800, "Offscreen Rendering", None, None)
+    # Create an offscreen window matching the image size
+    window = glfw.create_window(img_width, img_height, "Offscreen Rendering", None, None)
     if not window:
         glfw.terminate()
         raise Exception("창 생성 실패")
@@ -61,17 +65,18 @@ def render_to_image(image_path, output_path, angle):
     glEnable(GL_DEPTH_TEST)
     glDepthFunc(GL_LEQUAL)
 
-    # Set up the projection matrix
+    # Set up the perspective projection
+    glViewport(0, 0, img_width, img_height)  # Match viewport to image size
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(45, 1, 0.1, 50.0)
+    gluPerspective(45, img_width / img_height, 0.1, 100.0)  # 3D perspective projection
     glMatrixMode(GL_MODELVIEW)
 
     # Set a transparent background
     glClearColor(0.0, 0.0, 0.0, 0.0)  # RGBA: 마지막 값 0.0은 투명도
 
     # Load the texture
-    texture, img_width, img_height = load_texture_with_alpha(image_path)
+    texture, _, _ = load_texture_with_alpha(image_path)
     if not texture:
         glfw.terminate()
         return
@@ -79,8 +84,11 @@ def render_to_image(image_path, output_path, angle):
     # OpenGL rendering
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
-    glTranslatef(0.0, 0.0, -5.0)  # Move the object back
-    glRotatef(-angle, 0.0, 2.0, 0.0)  # Rotate the object around the Y-axis (negative for left)
+    glTranslatef(0.0, 0.0, -3.0)  # Move the object back in the Z-axis
+
+    # Apply rotations to make it appear front-facing
+    glRotatef(angle, 0.0, 1.0, 0.0)  # Rotate the object around the Y-axis
+    glRotatef(10, 1.0, 0.0, 0.0)  # Slight tilt around X-axis for better perspective
 
     glBindTexture(GL_TEXTURE_2D, texture)
     glBegin(GL_QUADS)
@@ -95,9 +103,8 @@ def render_to_image(image_path, output_path, angle):
     glEnd()
 
     # Read the pixels from the frame buffer
-    width, height = 800, 800
-    pixels = glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE)  # Include alpha channel
-    image = Image.frombytes("RGBA", (width, height), pixels)
+    pixels = glReadPixels(0, 0, img_width, img_height, GL_RGBA, GL_UNSIGNED_BYTE)
+    image = Image.frombytes("RGBA", (img_width, img_height), pixels)
     image = image.transpose(Image.FLIP_TOP_BOTTOM)  # Flip the image vertically
 
     # Save the image
@@ -105,6 +112,8 @@ def render_to_image(image_path, output_path, angle):
     print(f"회전된 투명 이미지가 저장되었습니다: {output_path}")
 
     glfw.terminate()
+
+
 
 
 # if __name__ == "__main__":
@@ -122,9 +131,9 @@ def render_to_image(image_path, output_path, angle):
 
 if __name__ == "__main__":
     # Input and output paths
-    input_image = "RoomEscape//문-오른쪽-닫힘.png"  # 원본 이미지 경로
-    output_image = "RoomEscape//문-오른쪽-닫힘(1).png"  # 저장될 이미지 경로
-    rotation_angle = -30# 오른쪽으로 회전할 각도
+    input_image = "RoomEscape//문-왼쪽-열림.png"  # 원본 이미지 경로
+    output_image = "RoomEscape//문-왼쪽-열림(1).png"  # 저장될 이미지 경로
+    rotation_angle = 30# 오른쪽으로 회전할 각도
 
     # Render the image rotated and save it
     render_to_image(input_image, output_image, rotation_angle)
