@@ -21,7 +21,8 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 
 
  
-![방탈출 힌트](C:/오소소플젝/images/그림1.png)
+![image](https://github.com/user-attachments/assets/d3652ede-512f-4624-aea7-161aa371313c)
+
 
  
 게임이 시작되기 전 억울하게 죽은 탐정이 확보해야 할 것들을 말해주고 있다. 
