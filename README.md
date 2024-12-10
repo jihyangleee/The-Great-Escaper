@@ -46,6 +46,26 @@ Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클�
 ![image](https://github.com/user-attachments/assets/c03606bf-a9c5-4b3f-9f15-8b00c379a358)
 문을 열기 위해 클릭해보면 하나의 창이 뜬다. 거기에 방금 전에 보았던 단어를 입력하면 문이 열린다. 
 
+![image](https://github.com/user-attachments/assets/65275f9e-4ae0-4e90-a5f8-b36e20590867)
+
+![image](https://github.com/user-attachments/assets/77c49b07-924c-428d-8614-10540f36819a)
+살인사건이 일어난 마지막 방이다. Warning과 침대를 옆으로 옮기면 단서가 나온다.
+
+![image](https://github.com/user-attachments/assets/b56f2fad-fbc2-41d2-bb48-c51fbfe3e22a)
+침대를 옮기니 지문이 나왔다. 지문의 방향을 보면 1시방향으로 기울어져 있음을 알 수 있다. 1을 적으면 마지막 방을 탈출할 수 있는 힌트가 나올 것이다.
+
+![image](https://github.com/user-attachments/assets/7edca17a-0b82-4025-a9e9-5b82aeba64f5)
+시계를 옆으로 밀면 방을 나갈 수 있는 열쇠가 주어진다.
+
+![image](https://github.com/user-attachments/assets/294af7fc-0226-453a-b10b-08444f370a69)
+방탈출에 성공했다.
+
+![image](https://github.com/user-attachments/assets/ad6c2b69-8866-438c-b70a-3fe0a12ad9a3)
+찾은 물품을 기록하는 공간이다. 5초후에 게임이 종료된다. 
+
+
+
+
 
 
  
