@@ -4,162 +4,165 @@ import tkinter as tk
 # import threading  # OpenGL 실행을 위한 스레드 사용
 # from opengl_scene import opengl_display  # OpenGL 관련 기능 가져오기
 
+fingerprint_used = False
+is_tk_window_open= False
+scene1 = Scene("룸1", "RoomEscape//배경-1.png")
+
+# 탁자 생성
+table = Object("RoomEscape//table(2).png")  # 탁자 이미지 필요
+table.locate(scene1, -20, 50)  # 탁자를 검정 벽 쪽으로 이동
+table.setScale(0.4)  # 크기 조정
+table.show()
+
+#컴퓨터 생성
+computer = Object("RoomEscape//computer(5).png")  # 노트북 이미지 필요
+computer.locate(scene1, 70, 370)  # 노트북을 탁자 위로 위치 조정
+computer.setScale(0.07)  # 크기 조정
+computer.show()
+
+light = Object("RoomEscape//light(2).png")  # 조명 이미지 경로
+light.locate(scene1, 300, 60)  # 천장 위치에 조명 배치
+light.setScale(0.7)  # 조명의 크기를 조정
+light.show()
+
+sofa = Object("RoomEscape//sofa.png")
+sofa.locate(scene1,1010,60)
+sofa.setScale(0.5)
+sofa.show()
+
+door1 = Object("RoomEscape//문-오른쪽-닫힘.png")
+door1.locate(scene1, 800, 270)
+door1.show()
+
+# 비밀번호 생성 
+keypad = Object("RoomEscape//키패드.png")
+keypad.locate(scene1, 700, 420)
+keypad.show()
+
+
+
+
+
+# flowerpot = Object("RoomEscape//화분.png")
+# flowerpot.locate(scene1, 550, 150)
+# flowerpot.show()
+
+#--------------------------------------------------------------scene2------------------------------------------------
+
+scene2 = Scene("룸2", "RoomEscape//배경-2.png")
+
+door2 = Object("RoomEscape//문-왼쪽-열림.png")
+door2.locate(scene2, 320, 270)
+door2.show()
+
+
+
+book1= Object("RoomEscape//books.png")
+book1.locate(scene2,40,160)
+book1.setScale(0.25)
+book1.show()
+
+
+book2= Object("RoomEscape//books(2).png")
+book2.locate(scene2,110,160)
+book2.setScale(0.25)
+book2.show()
+
+alpha = Object("RoomEscape//alpha.png")
+alpha.locate(scene2,900,150)
+alpha.setScale(0.6)
+alpha.show()
+
+#화분추가
+#이게 더 낫지??
+#약간 여러권 있는게 낫겠다. 저런 책 쌓인것이 여러개면 더 좋지 않겠나??
+
+# 포스터 1
+poster = Object("RoomEscape//범죄자1.png")
+poster.locate(scene2, 650, 300)  # 왼쪽 위
+poster.setScale(0.5)
+poster.show()
+
+# 포스터 2
+poster2 = Object("RoomEscape//범죄자2.jpg")
+poster2.locate(scene2, 735, 265)  # 오른쪽 위
+poster2.setScale(0.3)
+poster2.show()
+
+# 포스터 3
+poster3 = Object("RoomEscape//범죄자3.png")
+poster3.locate(scene2, 600, 260)  # 왼쪽 아래
+poster3.setScale(0.3)
+poster3.show()
+
+# 포스터 4
+poster4 = Object("RoomEscape//범죄자4.png")
+poster4.locate(scene2, 600, 390)  # 오른쪽 아래
+poster4.setScale(0.3)
+poster4.show()
+
+switch = Object("RoomEscape//switch(1).png")
+switch.locate(scene2, 770, 430)
+switch.setScale(0.1)
+switch.show()
+
+
+book = Object("RoomEscape//openbook.png")
+book.locate(scene2,200,100)
+book.setScale(0.1)
+book.show()
+
+
+password = Object("RoomEscape//암호.png")
+password.locate(scene2, 400, 100)
+
+board = Object("RoomEscape//board.png")
+board.setText("한글 ABCD\n1234")
+board.locate(scene2, 900, 600)
+board.show()
+
+door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
+door3.locate(scene2, 910, 270)
+door3.show()
+
+
+
+
+#--------------------------------------------scene3-----------------------------------------
+
+scene3 = Scene("룸3", "RoomEscape//배경4.png")
+
+
+fingerprint = Object("RoomEscape//rotated_지문.png")
+fingerprint.locate(scene3,300,30)
+fingerprint.setScale(0.6)
+fingerprint.show()
+
+
+
+bed = Object("RoomEscape//bed.png")
+bed.locate(scene3,350,55)
+bed.setScale(0.5)
+bed.show()
+
+caution = Object("RoomEscape//caution.png")
+caution.locate(scene3,400,55)
+caution.setScale(0.09)
+caution.show()
+
+
+key = Object("RoomEscape//열쇠.png")
+key.setScale(0.2)
+key.locate(scene3, 60, 550)
+key.show()
+
+clock = Object("RoomEscape//clock.png")
+clock.locate(scene3,10,500)
+clock.setScale(0.4)
+clock.show()
+
 def start_escape_game():
-    scene1 = Scene("룸1", "RoomEscape//배경-1.png")
-
-    # 탁자 생성
-    table = Object("RoomEscape//table(2).png")  # 탁자 이미지 필요
-    table.locate(scene1, -20, 50)  # 탁자를 검정 벽 쪽으로 이동
-    table.setScale(0.4)  # 크기 조정
-    table.show()
-
-    #컴퓨터 생성
-    computer = Object("RoomEscape//computer(5).png")  # 노트북 이미지 필요
-    computer.locate(scene1, 70, 370)  # 노트북을 탁자 위로 위치 조정
-    computer.setScale(0.07)  # 크기 조정
-    computer.show()
-
-    light = Object("RoomEscape//light(2).png")  # 조명 이미지 경로
-    light.locate(scene1, 300, 60)  # 천장 위치에 조명 배치
-    light.setScale(0.7)  # 조명의 크기를 조정
-    light.show()
-
-    sofa = Object("RoomEscape//sofa.png")
-    sofa.locate(scene1,1010,60)
-    sofa.setScale(0.5)
-    sofa.show()
-
-    door1 = Object("RoomEscape//문-오른쪽-닫힘.png")
-    door1.locate(scene1, 800, 270)
-    door1.show()
-
-    # 비밀번호 생성 
-    keypad = Object("RoomEscape//키패드.png")
-    keypad.locate(scene1, 700, 420)
-    keypad.show()
-
-
-
-
-
-    # flowerpot = Object("RoomEscape//화분.png")
-    # flowerpot.locate(scene1, 550, 150)
-    # flowerpot.show()
-
-    #--------------------------------------------------------------scene2------------------------------------------------
-
-    scene2 = Scene("룸2", "RoomEscape//배경-2.png")
-
-    door2 = Object("RoomEscape//문-왼쪽-열림.png")
-    door2.locate(scene2, 320, 270)
-    door2.show()
-
-
-
-    book1= Object("RoomEscape//books.png")
-    book1.locate(scene2,40,160)
-    book1.setScale(0.25)
-    book1.show()
-
-
-    book2= Object("RoomEscape//books(2).png")
-    book2.locate(scene2,110,160)
-    book2.setScale(0.25)
-    book2.show()
-
-    alpha = Object("RoomEscape//alpha.png")
-    alpha.locate(scene2,900,150)
-    alpha.setScale(0.6)
-    alpha.show()
-
-    #화분추가
-    #이게 더 낫지??
-    #약간 여러권 있는게 낫겠다. 저런 책 쌓인것이 여러개면 더 좋지 않겠나??
-
-    # 포스터 1
-    poster = Object("RoomEscape//범죄자1.png")
-    poster.locate(scene2, 650, 300)  # 왼쪽 위
-    poster.setScale(0.5)
-    poster.show()
-
-    # 포스터 2
-    poster2 = Object("RoomEscape//범죄자2.jpg")
-    poster2.locate(scene2, 735, 265)  # 오른쪽 위
-    poster2.setScale(0.3)
-    poster2.show()
-
-    # 포스터 3
-    poster3 = Object("RoomEscape//범죄자3.png")
-    poster3.locate(scene2, 600, 260)  # 왼쪽 아래
-    poster3.setScale(0.3)
-    poster3.show()
-
-    # 포스터 4
-    poster4 = Object("RoomEscape//범죄자4.png")
-    poster4.locate(scene2, 600, 390)  # 오른쪽 아래
-    poster4.setScale(0.3)
-    poster4.show()
-
-    switch = Object("RoomEscape//switch(1).png")
-    switch.locate(scene2, 770, 430)
-    switch.setScale(0.1)
-    switch.show()
-
-
-    book = Object("RoomEscape//openbook.png")
-    book.locate(scene2,200,100)
-    book.setScale(0.1)
-    book.show()
-
-
-    password = Object("RoomEscape//암호.png")
-    password.locate(scene2, 400, 100)
-
-    board = Object("RoomEscape//board.png")
-    board.setText("한글 ABCD\n1234")
-    board.locate(scene2, 900, 600)
-    board.show()
-
-    door3 = Object("RoomEscape//문-오른쪽-닫힘.png")
-    door3.locate(scene2, 910, 270)
-    door3.show()
-
-
-
-
-    #--------------------------------------------scene3-----------------------------------------
-
-    scene3 = Scene("룸3", "RoomEscape//배경4.png")
-
-
-    fingerprint = Object("RoomEscape//rotated_지문.png")
-    fingerprint.locate(scene3,300,30)
-    fingerprint.setScale(0.6)
-    fingerprint.show()
-
-
-
-    bed = Object("RoomEscape//bed.png")
-    bed.locate(scene3,350,55)
-    bed.setScale(0.5)
-    bed.show()
-
-    caution = Object("RoomEscape//caution.png")
-    caution.locate(scene3,400,55)
-    caution.setScale(0.09)
-    caution.show()
-
-
-    key = Object("RoomEscape//열쇠.png")
-    key.setScale(0.2)
-    key.locate(scene3, 60, 550)
-    key.show()
-
-    clock = Object("RoomEscape//clock.png")
-    clock.locate(scene3,10,500)
-    clock.setScale(0.4)
-    clock.show()
-
+    
 
 
 
@@ -178,9 +181,9 @@ def start_escape_game():
     door1.unlocked = False
     def onMouseAction_door1(x, y, action):
         if not door1.unlocked:
-            showMessage("문이 잠겨있다.")
+            showMessage("문이 잠겨있습니다.")
         elif door1.closed:
-            door1.setImage("C://오소소플젝//RoomEscape//문-오른쪽-열림.png")
+            door1.setImage("RoomEscape//문-오른쪽-열림.png")
             door1.closed = False
         else:
             scene2.enter()
@@ -259,12 +262,12 @@ def start_escape_game():
                 poster.locate(scene2, 550, 300)
                 poster.moved = True
                 switch.enabled = True  # 포스터가 옮겨지면 스위치 활성화
-                showMessage("포스터를 옮겼습니다. 이제 스위치를 사용할 수 있습니다.")
+                
             elif action == MouseAction.DRAG_RIGHT:
                 poster.locate(scene2, 750, 300)
                 poster.moved = True
                 switch.enabled = True  # 포스터가 옮겨지면 스위치 활성화
-                showMessage("포스터를 옮겼습니다. 이제 스위치를 사용할 수 있습니다.")
+                
     poster.onMouseAction = onMouseAction_poster
 
 
@@ -349,8 +352,8 @@ def start_escape_game():
 
 
     import threading
-
-    fingerprint_used = False  # 지문 클릭 여부
+    global fingerpint_used
+      # 지문 클릭 여부
     door3_used = False  # 문 클릭 여부
 
     def onMouseAction_fingerprint(x, y, action):
@@ -400,8 +403,8 @@ def start_escape_game():
     door3.unlocked = False
 
     # Tkinter 창 관리 플래그
-    is_tk_window_open = False  # 창이 열려 있는지 여부 추적
-
+      # 창이 열려 있는지 여부 추적
+    global is_tk_window_open
     def onMouseAction_door3(x, y, action):
         global door3, is_tk_window_open
 
@@ -413,7 +416,7 @@ def start_escape_game():
             if door3.closed:
                 door3.setImage("RoomEscape//문-오른쪽-열림.png")  # 문 열림 이미지로 변경
                 door3.closed = False
-                showMessage("문이 열렸습니다. 다음 방으로 이동합니다.")
+                showMessage("문이 열렸습니다. 다음 방으로 이동하세요.")
             else:
                 scene3.enter()  # 이미 열린 상태라면 바로 이동
                 showCustomMessage(
@@ -430,7 +433,7 @@ def start_escape_game():
                 root.withdraw()  # Tkinter 기본 창 숨기기
 
                 user_input = simpledialog.askstring(
-                    "비밀번호 입력", "문을 열기 위한 비밀번호를 입력하세요:"
+                    "알파벳입력", "문을 열기 위한 단어를 입력하세요:"
                 )
                 root.destroy()  # Tkinter 창 닫기
 
@@ -454,7 +457,7 @@ def start_escape_game():
 
 
     def onMouseAction_book(x,y,action):
-        showMessage("힌트 : 벽에 걸려있는 용의자들의 실루엣이 보일거야 저 사람들 중에 범인이 있어\n 범인은 평소에 추리소설을 좋아해 그래서 탐정들의 모습을 따라하는 것을 좋아한다네\n범인일 것 같은 범죄자의 얼굴을 클릭해서 옆으로 옮겨줘 그리고 무슨 문자가 나올거야 그걸 잘 기억해둬")
+        showMessage("힌트 : 벽에 걸려있는 용의자들의 실루엣이 보일거야 저 사람들 중에 범인이 있어\n 범인은 평소에 추리소설을 좋아해 그래서 탐정들의 모습을 따라하는 것을 좋아한다고 해\n범인일 것 같은 범죄자의 얼굴을 클릭해서 옆으로 옮겨줘 그리고 무슨 문자가 나올거야 그걸 잘 기억해둬")
     book.onMouseAction = onMouseAction_book
 
     def onMouseAction_computer(x, y, action):
@@ -487,7 +490,7 @@ def start_escape_game_with_closing(main_menu):
     start_escape_game()
 # 게임 방법을 보여주는 함수
 def show_game_instructions():
-    messagebox.showinfo("게임 방법", "1. 아이템을 클릭하거나 드래그하세요.\n2. 단서를 모아 문제를 해결하세요.\n3. 모든 방을 탈출하면 승리합니다!")
+    messagebox.showinfo("게임 방법", "1. 아이템을 클릭하거나 드래그합니다.\n2. 단서를 모아 문제를 해결합니다.\n3. 모든 방을 탈출하면 승리합니다!")
 
 # 로그인 성공 후 메인 메뉴 창 생성
 def create_main_menu():
@@ -496,7 +499,7 @@ def create_main_menu():
     main_menu.geometry("1280x761")
 
     # 배경 이미지 삽입
-    image_path = "RoomEscape//표지.webp"  # 사용자가 업로드한 이미지 경로
+    image_path = "RoomEscape//cover.webp"  # 사용자가 업로드한 이미지 경로
     bg_image = Image.open(image_path)
     bg_image = bg_image.resize((1280, 720), Image.Resampling.LANCZOS)
     bg_photo = ImageTk.PhotoImage(bg_image)
