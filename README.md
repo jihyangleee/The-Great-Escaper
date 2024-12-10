@@ -22,36 +22,33 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 
  
 ![image](https://github.com/user-attachments/assets/d3652ede-512f-4624-aea7-161aa371313c)
-
-
- 
-게임이 시작되기 전 억울하게 죽은 탐정이 확보해야 할 것들을 말해주고 있다. 
+게임이 시작되기 전 억울하게 죽은 탐정이 확보해야 할 것들을 말해주고 있다.
 게임 방법을 선택하면 게임을 하는 간단한 방법 같은 것들이 나온다. (클릭, 드래그를 해야한다는 것, 단서를 찾아야 방탈출을 할 수 있다는 것.) 
- 
+
+![image](https://github.com/user-attachments/assets/d2668463-d9dc-44e5-9516-dc831cd4b882)
 게임이 시작되었다. 먼저 컴퓨터 쪽으로 가서 힌트를 방을 탈출할 수 있는 힌트를 얻으면 된다.
- 
+
+![image](https://github.com/user-attachments/assets/9f42c17d-8b79-4588-9184-0bd07c849cda)
 힌트로 문장을 적어주었는데 방에 있는 물건들을 잘 조합해보면 답을 찾을 수 있다. 
 
- 
-(컴퓨터, 빛, 소파를 영어로 바꿔서 앞글자를 조합해보면 된다)
+![image](https://github.com/user-attachments/assets/5bbc24d7-bd64-47bc-87c0-f11e3b7fe694)
+ (컴퓨터, 빛, 소파를 영어로 바꿔서 앞글자를 조합해보면 된다)
 
- 
+![image](https://github.com/user-attachments/assets/02abd6b8-68cd-4e90-8cb7-01e374afe5b9)
 Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클릭하여 찾으면 문이 열린다. 
 
- 
+![image](https://github.com/user-attachments/assets/7130cb5a-8cb1-4bac-965d-f5e5010ba0ab)
+벽에 붙여 있는 실루엣을 보고 힌트에 맞는 실루엣을 선택하여 오른쪽으로 드래그하면 된다. 그러면 스위치가 있다. 그것을 누르면 방의 불이 꺼지면서 ‘BANGTAL’이라는 글자가 나온다.
+
+![image](https://github.com/user-attachments/assets/25c7a064-2337-4a07-942c-0ad988f831ff)
+‘BANGTAL’이 나온 것을 알 수 있다.
+
+![image](https://github.com/user-attachments/assets/c03606bf-a9c5-4b3f-9f15-8b00c379a358)
+문을 열기 위해 클릭해보면 하나의 창이 뜬다. 거기에 방금 전에 보았던 단어를 입력하면 문이 열린다. 
+
+
 
  
 
  
-게임이 시작되기 전 억울하게 죽은 탐정이 확보해야 할 것들을 말해주고 있다. 
-게임 방법을 선택하면 게임을 하는 간단한 방법 같은 것들이 나온다. (클릭, 드래그를 해야한다는 것, 단서를 찾아야 방탈출을 할 수 있다는 것.) 
- 
-게임이 시작되었다. 먼저 컴퓨터 쪽으로 가서 힌트를 방을 탈출할 수 있는 힌트를 얻으면 된다.
- 
-힌트로 문장을 적어주었는데 방에 있는 물건들을 잘 조합해보면 답을 찾을 수 있다. 
 
- 
-(컴퓨터, 빛, 소파를 영어로 바꿔서 앞글자를 조합해보면 된다)
-
- 
-Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클릭하여 찾으면 문이 열린다. 
