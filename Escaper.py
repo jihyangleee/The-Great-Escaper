@@ -573,7 +573,7 @@ def create_login_window():
         user_id = id_entry.get()
         user_pw = pw_entry.get()
 
-        if user_id == "admin" and user_pw == "1234":
+        if user_id == "dlwlgid" and user_pw == "1234":
             messagebox.showinfo("로그인 성공", "게임을 시작합니다!")
             root.destroy()  # 로그인 창 닫기
             create_main_menu()  # 메인 메뉴 창 생성
