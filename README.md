@@ -1,4 +1,5 @@
 # The Great Escaper
+<img width="790" alt="image" src="https://github.com/user-attachments/assets/213fc3d3-8404-4fb3-ae8b-abafddafe3c7">
 
 **The Great Escaper** – 방탈출 게임
 -	The great escaper는 총 3개로 구성되어 있는 방에 있는 단서를 찾아야 탈출할 수 있는 게임이다.
