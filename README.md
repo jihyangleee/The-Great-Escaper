@@ -17,13 +17,8 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 ## 게임 방법
 
 
+https://youtu.be/10o4dw1W-zs
 
-<iframe width="640" height="360" 
-        src="https://youtu.be/10o4dw1W-zs"
-        title="The Great Escaper"
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
 
  
 ![방탈출 힌트](images/그림1.png)
