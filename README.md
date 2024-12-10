@@ -1,4 +1,4 @@
-# bangtal_game
+# The Great Escaper
 
 **The Great Escaper** – 방탈출 게임
 -	The great escaper는 총 3개로 구성되어 있는 방에 있는 단서를 찾아야 탈출할 수 있는 게임이다.
