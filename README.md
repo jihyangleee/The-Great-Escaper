@@ -33,7 +33,7 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 
 게임이 시작되었습니다. 먼저 컴퓨터 쪽으로 가서 힌트를 방을 탈출할 수 있는 힌트를 얻으면 됩니다.
 
-<img width="857" alt="image" src="https://github.com/user-attachments/assets/48fda8da-859b-4b7a-8090-199acf8dcae8">
+<img width="940" alt="image" src="https://github.com/user-attachments/assets/48fda8da-859b-4b7a-8090-199acf8dcae8">
 
 
 힌트로 문장을 적어주었는데 방에 있는 물건들을 잘 조합해보면 답을 찾을 수 있습니다. 
