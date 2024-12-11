@@ -35,7 +35,6 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 
 <img width="940" alt="image" src="https://github.com/user-attachments/assets/48fda8da-859b-4b7a-8090-199acf8dcae8">
 
-
 힌트로 문장을 적어주었는데 방에 있는 물건들을 잘 조합해보면 답을 찾을 수 있습니다. 
 
 <img width="940" alt="image" src="https://github.com/user-attachments/assets/5bbc24d7-bd64-47bc-87c0-f11e3b7fe694">
