@@ -82,7 +82,7 @@ Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클�
 
 ## 게임 구현 방법
 살인사건이 일어난 마지막 방을 구현한 방법에 대해 설명하겠습니다.
-(bangtal library, open source를 이용함)
+(bangtal library, open source를 이용함)<br>
 마지막 방 구현
 ``` python
 scene3 = Scene("룸3", "RoomEscape//배경4.png")
