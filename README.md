@@ -41,7 +41,7 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 
 (컴퓨터, 빛, 소파를 영어로 바꿔서 앞글자를 조합해보면 됩니다)
 
-![image](https://github.com/user-attachments/assets/02abd6b8-68cd-4e90-8cb7-01e374afe5b9)
+<img width="940" alt="image" src="https://github.com/user-attachments/assets/02abd6b8-68cd-4e90-8cb7-01e374afe5b9">
 
 Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클릭하여 찾으면 문이 열립니다. 
 
