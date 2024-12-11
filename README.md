@@ -12,7 +12,7 @@
 2.	게임방법
 3.	게임구현 방법
 4.	Reference
-5.	License
+
 ## 시작 환경
 Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환경이 필요합니다. (python8-32bit 환경 권장) , https://github.com/bosornd/bangtal/releases 여기서 v0.4.0 bangtal library를 다운받으면 됩니다. Bangtal.dll은 window환경에 있으며 bangtal파일은 python8파일에 있습니다. 이렇게 준비가 끝나면 함수를 추가하거나 객체를 추가하여 방을 꾸미고 단서를 넣어 방탈출 게임을 만듭니다.
 
@@ -212,5 +212,10 @@ key.onMouseAction = onMouseAction_key
 ```
 시계를 drag 할 수 있도록 하여 키가 보일 수 있도록 합니다. 키를 획득하면 게임이 종료되도록 합니다.
 
- 
+## Reference
+https://github.com/bosornd/bangtal.python.git
+https://github.com/bosornd/bangtal/releases
+
+
+
 
