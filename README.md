@@ -21,7 +21,7 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
   
 [![The Great Escaper](https://img.youtube.com/vi/10o4dw1W-zs/0.jpg)](https://youtu.be/10o4dw1W-zs)
 
-
+- 게임화면
  
 ![image](https://github.com/user-attachments/assets/d3652ede-512f-4624-aea7-161aa371313c)
 
@@ -80,11 +80,137 @@ Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클�
 찾은 물품을 기록하는 공간입니다. 5초후에 게임이 종료됩니다. 
 
 
+## 게임 구현 방법
+살인사건이 일어난 마지막 방을 구현한 방법에 대해 설명하겠습니다.
+(bangtal library를 이용)
+마지막 방 구현
+``` python
+scene3 = Scene("룸3", "RoomEscape//배경4.png")
+
+
+fingerprint = Object("RoomEscape//rotated_지문.png")
+fingerprint.locate(scene3,300,30)
+fingerprint.setScale(0.6)
+fingerprint.show()
 
 
 
+bed = Object("RoomEscape//bed.png")
+bed.locate(scene3,350,55)
+bed.setScale(0.5)
+bed.show()
 
- 
+caution = Object("RoomEscape//caution.png")
+caution.locate(scene3,400,55)
+caution.setScale(0.09)
+caution.show()
+
+
+key = Object("RoomEscape//열쇠.png")
+key.setScale(0.2)
+key.locate(scene3, 60, 550)
+key.show()
+
+clock = Object("RoomEscape//clock.png")
+clock.locate(scene3,10,500)
+clock.setScale(0.4)
+clock.show()
+```
+방을 구현할 때 필요한 물건들은 Obejct클래스를 이용해서 불러옵니다. 
+
+``` python
+caution.moved = False
+def onMouseAction_caution(x, y, action):
+    global caution
+    if caution.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            caution.locate(scene3, 200, 55)
+            caution.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            caution.locate(scene3, 600, 55)
+            caution.moved = True
+caution.onMouseAction = onMouseAction_caution
+```
+주의 표시를 drag를 통해 옆으로 이동시킬 수 있도록 합니다.
+
+```python
+bed.moved = False
+def onMouseAction_bed(x, y, action):
+    global bed
+    if bed.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            bed.locate(scene3, 150, 55)
+            bed.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            bed.locate(scene3, 550, 55)
+            bed.moved = True
+bed.onMouseAction = onMouseAction_bed
+```
+침대를 옆으로 이동시켜 지문이 보일 수 있도록 합니다.
+
+```python
+import threading
+global fingerpint_used
+  # 지문 클릭 여부
+door3_used = False  # 문 클릭 여부
+
+def onMouseAction_fingerprint(x, y, action):
+    global fingerprint_used
+    if fingerprint_used:
+        showCustomMessage("범인의 지문을 획득했네! 이제 증거를 찾았으니 키를 찾아 방을 나가면 되겠네!\n지문이 가리키는 방향을 잘보고 시계의 시침이 가리켜야 하는 숫자를 적어줘\n그게 범죄가 일어난 시각이야",duration=7.0)
+        return
+    fingerprint_used = True  # 한 번 실행 후 True로 설정
+
+    showCustomMessage("범인의 지문을 획득했네! 이제 증거를 찾았으니 키를 찾아 방을 나가면 되겠네!\n지문이 가리키는 방향을 잘보고 시계의 시침이 가리켜야 하는 숫자를 적어줘\n그게 범죄가 일어난 시각이야",duration=7.0)
+    
+    def show_tkinter_dialog():
+        root = tk.Tk()
+        root.withdraw()  # Tkinter 창 숨기기
+        user_input = simpledialog.askstring("숫자 입력", "키를 얻기 위한 숫자를 입력하세요:")
+        root.destroy()  # Tkinter 창 닫기
+        if user_input == "1":  # 정답
+            showCustomMessage("정답입니다! 시계를 옆으로 밀어 열쇠를 획득하세요!",duration=3.0)
+            clock.onMouseAction = onMouseAction_clock
+        elif user_input is None or user_input.strip() == "":  # 취소 또는 빈 입력
+            showCustomMessage("입력을 취소했습니다. 다시 시도하세요.",duration=3.0)
+        else:  # 오답
+            showCustomMessage("오답입니다. 다시 시도하세요.",duration=3.0)
+    
+    threading.Thread(target=show_tkinter_dialog).start()
+fingerprint.onMouseAction = onMouseAction_fingerprint
+```
+지문을 클릭하면 tkinter창이 열리도록 하여 힌트를 보고 답을 적을 수 있도록 합니다.
+
+``` python
+ #시계 움직임
+clock.moved = False
+def onMouseAction_clock(x, y, action):
+    global clock
+    if clock.moved == False:
+        if action == MouseAction.DRAG_LEFT:
+            clock.locate(scene3, -100, 500)
+            clock.moved = True
+        elif action == MouseAction.DRAG_RIGHT:
+            clock.locate(scene3, 100, 500)
+            clock.moved = True
+
+
+end_timer = Timer(5.0)  # 5초 타이머 생성
+
+def onMouseAction_key(x, y, action):
+    global key
+    key.pick()
+    showCustomMessage("축하합니다! 열쇠를 찾았습니다. 방탈출 성공!",duration=7.0)
+
+    # 5초 후 게임 종료 설정
+    def end_game():
+        endGame()  # 게임 종료
+    end_timer.onTimeout = end_game  # 타이머 종료 시 end_game 실행
+    end_timer.start()  # 타이머 시작
+
+key.onMouseAction = onMouseAction_key
+```
+시계를 drag 할 수 있도록 하여 키가 보일 수 있도록 합니다. 키를 획득하면 게임이 종료되도록 합니다.
 
  
 
