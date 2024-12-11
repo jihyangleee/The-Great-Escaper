@@ -1,8 +1,7 @@
 import sys
 from bangtal import *
 import tkinter as tk
-# import threading  # OpenGL 실행을 위한 스레드 사용
-# from opengl_scene import opengl_display  # OpenGL 관련 기능 가져오기
+
 
 fingerprint_used = False
 is_tk_window_open= False
@@ -41,12 +40,6 @@ keypad.show()
 
 
 
-
-
-# flowerpot = Object("RoomEscape//화분.png")
-# flowerpot.locate(scene1, 550, 150)
-# flowerpot.show()
-
 #--------------------------------------------------------------scene2------------------------------------------------
 
 scene2 = Scene("룸2", "RoomEscape//배경-2.png")
@@ -73,9 +66,7 @@ alpha.locate(scene2,900,150)
 alpha.setScale(0.6)
 alpha.show()
 
-#화분추가
-#이게 더 낫지??
-#약간 여러권 있는게 낫겠다. 저런 책 쌓인것이 여러개면 더 좋지 않겠나??
+
 
 # 포스터 1
 poster = Object("RoomEscape//범죄자1.png")
@@ -207,17 +198,7 @@ def start_escape_game():
 
 
 
-    # flowerpot.moved = False
-    # def onMouseAction_flowerpot(x, y, action):
-    #     global flowerpot
-    #     if flowerpot.moved == False:
-    #         if action == MouseAction.DRAG_LEFT:
-    #             flowerpot.locate(scene1, 450, 150)
-    #             flowerpot.moved = True
-    #         elif action == MouseAction.DRAG_RIGHT:
-    #             flowerpot.locate(scene1, 650, 150)
-    #             flowerpot.moved = True
-    # flowerpot.onMouseAction = onMouseAction_flowerpot
+   
 
     def onMouseAction_door2(x, y, action):
         global scene1
