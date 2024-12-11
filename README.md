@@ -38,15 +38,15 @@ Python 기반 방탈출 게임 라이브러리를 사용하려면 32비트 환�
 
 힌트로 문장을 적어주었는데 방에 있는 물건들을 잘 조합해보면 답을 찾을 수 있습니다. 
 
-![image](https://github.com/user-attachments/assets/5bbc24d7-bd64-47bc-87c0-f11e3b7fe694)
+<img width="940" alt="image" src="https://github.com/user-attachments/assets/5bbc24d7-bd64-47bc-87c0-f11e3b7fe694">
 
- (컴퓨터, 빛, 소파를 영어로 바꿔서 앞글자를 조합해보면 됩니다)
+(컴퓨터, 빛, 소파를 영어로 바꿔서 앞글자를 조합해보면 됩니다)
 
 ![image](https://github.com/user-attachments/assets/02abd6b8-68cd-4e90-8cb7-01e374afe5b9)
 
 Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클릭하여 찾으면 문이 열립니다. 
 
-![image](https://github.com/user-attachments/assets/7130cb5a-8cb1-4bac-965d-f5e5010ba0ab)
+<img width="940" alt="image" src="https://github.com/user-attachments/assets/7130cb5a-8cb1-4bac-965d-f5e5010ba0ab">
 
 벽에 붙여 있는 실루엣을 보고 힌트에 맞는 실루엣을 선택하여 오른쪽으로 드래그하면 됩니다. 그러면 스위치가 있습니다. 그것을 누르면 방의 불이 꺼지면서 ‘BANGTAL’이라는 글자가 나옵니다.
 
