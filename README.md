@@ -65,7 +65,7 @@ Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클�
 
 ![image](https://github.com/user-attachments/assets/b56f2fad-fbc2-41d2-bb48-c51fbfe3e22a)
 
-침대를 옮기니 지문이 나왔습니다. 지문의 방향을 보면 1시방향으로 기울어져 있음을 알 수 있습니다. 1을 적으면 마지막 방을 탈출할 수 있는 힌트가 나올 것입니다.
+침대를 옮기니 지문이 나왔습니다. 지문의 방향을 보면 1시방향으로 기울어져 있음을 알 수 있습니다. <br>1을 적으면 마지막 방을 탈출할 수 있는 힌트가 나올 것입니다.
 
 ![image](https://github.com/user-attachments/assets/7edca17a-0b82-4025-a9e9-5b82aeba64f5)
 
