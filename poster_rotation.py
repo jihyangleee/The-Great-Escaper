@@ -107,15 +107,6 @@ def render_to_image(image_path, output_path, angle):
     glfw.terminate()
 
 
-# if __name__ == "__main__":
-#     # Input and output paths
-#     input_image = "RoomEscape//poster.png"  # 원본 이미지 경로
-#     output_image = "RoomEscape//poster.png"  # 저장될 이미지 경로
-#     rotation_angle = 30  # 왼쪽으로 회전할 각도 (음수로 전달)
-
-#     # Render the image rotated and save it
-#     render_to_image(input_image, output_image, rotation_angle)
-
 
 
 
