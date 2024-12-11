@@ -47,7 +47,7 @@ Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클�
 
 <img width="940" alt="image" src="https://github.com/user-attachments/assets/7130cb5a-8cb1-4bac-965d-f5e5010ba0ab">
 
-벽에 붙여 있는 실루엣을 보고 힌트에 맞는 실루엣을 선택하여 오른쪽으로 드래그하면 됩니다. 그러면 스위치가 있습니다. 그것을 누르면 방의 불이 꺼지면서 ‘BANGTAL’이라는 글자가 나옵니다.
+벽에 붙여 있는 실루엣을 보고 힌트에 맞는 실루엣을 선택하여 오른쪽으로 드래그하면 됩니다. 그러면 스위치가 있습니다. <br> 그것을 누르면 방의 불이 꺼지면서 ‘BANGTAL’이라는 글자가 나옵니다.
 
 ![image](https://github.com/user-attachments/assets/25c7a064-2337-4a07-942c-0ad988f831ff)
 
