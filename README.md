@@ -217,6 +217,7 @@ OpenGL을 이용해 2d 그래픽을 효율적으로 렌더링 했습니다.)
 
 ```python
 from OpenGL.GL import *
+from OpenGL.GLU import *
 ```
 
 
