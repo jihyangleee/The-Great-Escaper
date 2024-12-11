@@ -82,7 +82,7 @@ Computer, light, sofa 이렇게 영어로 바꾼 후 c,l,s를 화살표를 클�
 
 ## 게임 구현 방법
 살인사건이 일어난 마지막 방을 구현한 방법에 대해 설명하겠습니다.
-(bangtal library를 이용)
+(bangtal library, open source를 이용함)
 마지막 방 구현
 ``` python
 scene3 = Scene("룸3", "RoomEscape//배경4.png")
@@ -211,6 +211,15 @@ def onMouseAction_key(x, y, action):
 key.onMouseAction = onMouseAction_key
 ```
 시계를 drag 할 수 있도록 하여 키가 보일 수 있도록 합니다. 키를 획득하면 게임이 종료되도록 합니다.
+
+(추가적으로 2d 방에 3d로 물건들이 방에 있는 것처럼 구현하기 위해 
+OpenGL을 이용해 2d 그래픽을 효율적으로 렌더링 했습니다.) 
+
+```python
+from OpenGL.GL import *
+```
+
+
 
 ## Reference
 https://github.com/bosornd/bangtal.python.git
